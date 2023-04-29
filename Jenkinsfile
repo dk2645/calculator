@@ -16,8 +16,9 @@ pipeline{
             }
         steps {
                 sh '''
-                scp -o "StrictHostKeyChecking=no" -r ./ ${EC2_USER}@${EC2_HOST}:/home/${EC2_USER}/nodeapp
-                ssh -o "StrictHostKeyChecking=no" -i ${SSH_KEY} ${EC2_USER}@${EC2_HOST} "cd /home/${EC2_USER}/nodeapp && npm install && pm2 start app.js --name "my node app""
+                ssh -o "StrictHostKeyChecking=no" -i ${SSH_KEY} ${EC2_USER}@${EC2_HOST} "cd /home/${EC2_USER}/ && mkdir nodeapp"
+                scp -o "StrictHostKeyChecking=no" -r /var/lib/jenkins/workspace/calculator_app/ ${EC2_USER}@${EC2_HOST}:/home/${EC2_USER}/nodeapp
+                ssh -o "StrictHostKeyChecking=no" -i ${SSH_KEY} ${EC2_USER}@${EC2_HOST} "cd /home/${EC2_USER}/nodeapp && npm install && pm2 start app.js --name 'my node app'"
                 '''
             }
         }

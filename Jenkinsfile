@@ -16,6 +16,7 @@ pipeline{
             }
         steps {
                 sh '''
+                 rm -rf .git
                  scp -r /var/lib/jenkins/workspace/calculator_app/ ${EC2_USER}@${EC2_HOST}:/home/${EC2_USER}/
                  ssh ${EC2_USER}@${EC2_HOST} "cd /home/${EC2_USER}/calculator_app/ && npm install && pm2 start app.js --name 'my node app'"
                 '''

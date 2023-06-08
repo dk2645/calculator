@@ -11,7 +11,7 @@ pipeline{
         }
         stage('Deploy') {
         environment {
-            EC2_HOST = '13.232.21.133'
+            EC2_HOST = '13.126.84.247'
             EC2_USER = 'ubuntu'
             }
         steps {
